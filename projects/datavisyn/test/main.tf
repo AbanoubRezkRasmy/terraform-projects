@@ -4,7 +4,7 @@ locals {
 }
 /* ----------------------------------- VPC ---------------------------------- */
 module "vpc" {
-  source                                          = "git::https://github.com/Khaled-SRE/terraform-modules.git//Network/VPC?ref=v1.0.0"
+  source                                          = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//Network/VPC?ref=v1.0.0"
   vpc_cidr                                        = var.vpc_cidr
   vpc_name                                        = var.vpc_name
   private_subnet_cidrs                            = var.private_subnet_cidrs
@@ -18,7 +18,7 @@ module "vpc" {
 
 /* --------------------------------- Alb SG --------------------------------- */
 module "sg_alb" {
-  source              = "git::https://github.com/Khaled-SRE/terraform-modules.git//Security_Group?ref=v1.0.0"
+  source              = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//Security_Group?ref=v1.0.0"
   security_group_name = var.alb_sg_name
   vpc_id              = module.vpc.vpc_id
   description         = "Security group for ALB"
@@ -37,7 +37,7 @@ module "sg_alb" {
 
 /* --------------------------------- EKS SG --------------------------------- */
 module "sg_eks" {
-  source              = "git::https://github.com/Khaled-SRE/terraform-modules.git//Security_Group?ref=v1.0.0"
+  source              = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//Security_Group?ref=v1.0.0"
   security_group_name = var.eks_sg_name
   vpc_id              = module.vpc.vpc_id
   description         = "Security group for EKS"
@@ -56,7 +56,7 @@ module "sg_eks" {
 
 /* ----------------------------------- EKS ---------------------------------- */
 module "eks" {
-  source                               = "git::https://github.com/Khaled-SRE/terraform-modules.git//EKS?ref=v1.0.0"
+  source                               = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//EKS?ref=v1.0.0"
   env                                  = var.env
   infrastructure_region                = var.region
   cluster_name                         = var.cluster_name
@@ -73,7 +73,7 @@ module "eks" {
 
 /* ------------------------------ EKS-NodeGroup ----------------------------- */
 module "eks-nodegroup" {
-  source                    = "git::https://github.com/Khaled-SRE/terraform-modules.git//EKS_Nodegroup?ref=v1.0.0"
+  source                    = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//EKS_Nodegroup?ref=v1.0.0"
   env                       = var.env
   cluster_name              = var.cluster_name
   eks_cluster_arn           = module.eks.eks_cluster_arn
@@ -94,14 +94,14 @@ module "eks-nodegroup" {
 
 /* ------------------------------- Route 53 ------------------------------ */
 module "route53_hostedzone" {
-  source       = "git::https://github.com/Khaled-SRE/terraform-modules.git//Route53?ref=v1.0.0"
+  source       = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//Route53?ref=v1.0.0"
   domain       = var.domain
   cluster_name = var.cluster_name
 }
 
 /* ------------------------------- ECR ------------------------------ */
 module "microservices_product" {
-  source = "git::https://github.com/Khaled-SRE/terraform-modules.git//ECR?ref=v1.0.0"
+  source = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//ECR?ref=v1.0.0"
   ecr_name = "microservices-product"
   tags = {
     Environment = "test"
@@ -110,7 +110,7 @@ module "microservices_product" {
 }
 
 module "microservices_user" {
-  source = "git::https://github.com/Khaled-SRE/terraform-modules.git//ECR?ref=v1.0.0"
+  source = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//ECR?ref=v1.0.0"
   ecr_name = "microservices-user"
   tags = {
     Environment = "test"
@@ -121,7 +121,7 @@ module "microservices_user" {
 /* ------------------------------- ACM ------------------------------ */
 /*
 module "acm" {
-  source                = "git::https://github.com/Khaled-SRE/terraform-modules.git//ACM?ref=v1.0.0"
+  source                = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//ACM?ref=v1.0.0"
   acm_domain_name       = var.domain
   hosted_zone_id        = module.route53_hostedzone.zone_id
 }
@@ -130,7 +130,7 @@ module "acm" {
 
 /* ---------------------- ALB Ingress Addon -----------------------*/
 module "alb_ingress_addon" {
-  source                              = "git::https://github.com/Khaled-SRE/terraform-modules.git//EKS_Addons/ALB_Ingress?ref=v1.0.0"
+  source                              = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//EKS_Addons/ALB_Ingress?ref=v1.0.0"
   eks_alb_role_arn                    = module.eks.eks_alb_role_arn  
   cluster_name                        = var.cluster_name
   addon_depends_on_nodegroup_no_taint = module.eks-nodegroup.node_group_without_taint_arn
@@ -140,7 +140,7 @@ module "alb_ingress_addon" {
 /* ------------------------ Argocd Add-on ----------------------- */
 
 module "argo_cd_addon" {
-  source                     = "git::https://github.com/Khaled-SRE/terraform-modules.git//EKS_Addons/Argo_Cd?ref=v1.0.0"
+  source                     = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//EKS_Addons/Argo_Cd?ref=v1.0.0"
   ingress_group_name         = var.ingress_group_name
   argocd_domain_name         = var.argocd_domain_name
   certificate_arn            = var.certificate_arn
@@ -151,7 +151,7 @@ module "argo_cd_addon" {
 
 /* --------------------- External DNS Add-on -------------------- */
 module "external_dns_addon" {
-  source       = "git::https://github.com/Khaled-SRE/terraform-modules.git//EKS_Addons/External_DNS?ref=v1.0.0"
+  source       = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//EKS_Addons/External_DNS?ref=v1.0.0"
   cluster_name = var.cluster_name
   domain       = var.domain
   zone_name    = var.ACM_zone_type
@@ -177,7 +177,7 @@ resource "time_sleep" "wait_for_alb" {
 
 
 module "waf" {
-  source = "git::https://github.com/Khaled-SRE/terraform-modules.git//WAF?ref=v1.0.0"
+  source = "git::https://github.com/AbanoubRezkRasmy/terraform-modules.git//WAF?ref=v1.0.0"
 
   waf_name        = var.waf_name
   waf_description = var.waf_description
