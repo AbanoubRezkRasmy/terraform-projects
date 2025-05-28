@@ -11,8 +11,8 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "platform-test-remote-tfstate" 
-    key            = "platform/test/platform-test"   
+    bucket         = "terrform-datavisyn-tfstate" 
+    key            = "datavisyn/test/datavisyn-test"   
     region         = "eu-west-1"                   
     encrypt        = true
     use_lockfile   = true
