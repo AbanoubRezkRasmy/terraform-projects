@@ -14,8 +14,8 @@ terraform {
     bucket         = "terrform-datavisyn-tfstate" 
     key            = "datavisyn/test/datavisyn-test"   
     region         = "eu-west-1"                   
-    encrypt        = true
-    use_lockfile   = true
+    #encrypt        = true
+    #use_lockfile   = true
     assume_role = {
       role_arn = "arn:aws:iam::297071026656:role/terraform-role"
     }
