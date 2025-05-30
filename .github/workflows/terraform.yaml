@@ -11,7 +11,7 @@ on:
         required: true
         type: choice
         options:
-          - datavisyn
+          - datavisynn
       environment:
         description: 'Please type The Environment To Run Terraform Command on:- '
         required: true
