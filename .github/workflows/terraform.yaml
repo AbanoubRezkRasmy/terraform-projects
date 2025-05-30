@@ -125,3 +125,5 @@ jobs:
         run: |
           cd projects/${{ inputs.tribe }}/${{ inputs.environment }}
           terraform destroy -var-file ${{ inputs.environment }}.tfvars -auto-approve
+
+          
