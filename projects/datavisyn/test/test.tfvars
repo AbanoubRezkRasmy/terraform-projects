@@ -3,7 +3,7 @@ env    = "test"
 region = "eu-west-1"
 /* ------------------------------ VPC Variables ----------------------------- */
 vpc_cidr             = "10.0.0.0/16"
-vpc_name             = "eks-test-vpc"
+vpc_name             = "datavisynn-eks-test-vpc"
 private_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]  
 public_subnet_cidrs  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]  
 availability_zones   = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
@@ -17,8 +17,8 @@ cluster_endpoint_public_access       = true
 cluster_endpoint_public_access_cidrs = ["0.0.0.0/0"]
 
 /* ------------------------- EKS-NodeGroup Variables ------------------------ */
-node_group_name           = "datavisynn-test-eks-node-group"
-eks_nodes_role_name       = "eks-node-group-rolee"
+node_group_name           = "datavisyn-test-eks-node-group"
+eks_nodes_role_name       = "eks-node-group-role"
 node_group_min_size       = 1
 node_group_desired_size   = 1
 node_group_max_size       = 2
