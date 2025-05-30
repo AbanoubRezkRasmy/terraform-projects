@@ -9,16 +9,16 @@ public_subnet_cidrs  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 availability_zones   = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 
 /* ------------------------------ EKS Variables ----------------------------- */
-cluster_name                         = "datavisyn-test-eks"
+cluster_name                         = "datavisynn-test-eks"
 cluster_version                      = "1.32"
-eks_role_name                        = "eks-role-test"
+eks_role_name                        = "eks-rolee-test"
 cluster_endpoint_private_access      = true
 cluster_endpoint_public_access       = true
 cluster_endpoint_public_access_cidrs = ["0.0.0.0/0"]
 
 /* ------------------------- EKS-NodeGroup Variables ------------------------ */
-node_group_name           = "datavisyn-test-eks-node-group"
-eks_nodes_role_name       = "eks-node-group-role"
+node_group_name           = "datavisynn-test-eks-node-group"
+eks_nodes_role_name       = "eks-node-group-rolee"
 node_group_min_size       = 1
 node_group_desired_size   = 1
 node_group_max_size       = 2
